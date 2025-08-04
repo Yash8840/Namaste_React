@@ -1,0 +1,22 @@
+{
+  "name": "episode-1",
+  "version": "1.0.0",
+  "description": "he",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yash8840/Namaste_React.git#main"
+  },
+  "author": "yash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yash8840/Namaste_React/issues"
+  },
+  "homepage": "https://github.com/Yash8840/Namaste_React/tree/main#readme",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  }
+}
