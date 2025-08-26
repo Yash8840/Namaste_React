@@ -28,19 +28,7 @@ const Body = () => {
     fetchdata();
   }, []);
 
-  //  useEffect(() => {
-  //   const handleScroll = () => {
-  //     // your scroll logic here
-  //     if (
-  //       window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 &&
-  //       !loading
-  //     ) {
-  //       addData();
-  //     }
-  //   };
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [loading]);
+ 
 
   return listOfRes.length === 0 ? (
     <Shimmer />
