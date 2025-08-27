@@ -13,7 +13,7 @@ const Body = () => {
     );
 
     const jsonData = await response.json();
-    console.log(jsonData);
+    // console.log(jsonData);
     setListOfRes(
       jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
