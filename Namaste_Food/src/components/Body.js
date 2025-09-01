@@ -42,6 +42,9 @@ const Body = () => {
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
+              if(e.target.value === "") {
+                setFilteredRest(listOfRes);
+              }
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {

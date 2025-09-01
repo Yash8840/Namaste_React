@@ -11,6 +11,13 @@
   align-items: center;
   padding-right: 50px;
   padding-left: 20px;
+  /* border-bottom: 2px solid black; */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 10px;
+  /* position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100; */
   
 }
 .body{
@@ -84,4 +91,174 @@
 .filter{
   display: flex;
   gap: 10px;
+}
+.rest-container-outer{
+  padding: 0vw 15vw;
+  
+}
+.rest-container-inner{
+  height: auto;
+
+}
+.path{
+  /* text-align: center; */
+  margin-top: 20px;
+  /* font-size: 1.2rem; */
+  padding: 10px;
+}
+.res-name-card{
+  padding: 20px;
+}
+.order-online-card{
+  display: flex
+;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(2, 6, 12, 0.15);
+    height: 100%;
+    overflow-x: scroll;
+    gap: 20px;
+    scrollbar-width: none;
+}
+.order-online-card > span{
+  margin-right: 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.res-detail-card{
+  border-radius: 20px;
+    /* border: 1px solid rgba(2, 6, 12, 0.15); */
+     background: linear-gradient(rgb(255, 255, 255) -6.71%, rgb(235, 235, 242) 56.19%, rgb(223, 223, 231) 106.56%);
+    /* box-shadow: rgba(0, 0, 0, 0.04) 0px 8px 16px 0px; */
+    padding: 20px;
+    margin-bottom: 50px;
+
+}
+.res-detail{
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+}
+.deals-for-u-outer{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.deals-cards{
+  display: flex;
+  gap: 20px;
+}
+.deals-card{
+  width: 370px;
+  /* height: 150px; */
+  border-radius: 20px;
+  display: flex;
+  border: 1px solid rgba(2, 6, 12, 0.15);
+  align-items: center;
+  gap: 2%;
+  justify-content: flex-start;
+  padding: 10px;
+}
+.deals-card img{
+  height: 50px;
+}
+.menu-logo-card{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  justify-content: center;
+      color: rgba(2, 6, 12, 0.6);
+      font-weight: 600;
+      font-size: 1rem;
+}
+hr{
+  height: 2px;
+    background: linear-gradient(to right, transparent,     rgba(2, 6, 12, 0.185), transparent);
+
+  border: none;
+  width: 100%;
+}
+.search-dishes-card{
+  width: 100%;
+  display: flex;
+
+
+}
+.search-rest{
+  width: 100%;
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+.veg-non-veg-card{
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.veg{
+  border: 1px solid green;
+  color: green;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.non-veg{
+  border: 1px solid red;
+  color: red;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.besteller-icon{
+  border: 1px solid #f0f0f0;
+  /* color: orange; */
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.guilt-icon{
+  border: 1px solid #f0f0f0;
+  /* color: purple; */
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.dish-card{
+  display: flex;
+  /* gap: 20px; */
+  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.dish-logo img{
+  height: 100px;
+  border-radius: 10px;
+}
+.add-btn{
+  /* background-color: #f0f0f0; */
+  border: 1px solid #f0f0f0;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: white;
+  color: green;
+  position: relative;
+  bottom: 20px;
+  left: 27%;
+}
+a{
+  text-decoration: none;
+  color: black;
 }
