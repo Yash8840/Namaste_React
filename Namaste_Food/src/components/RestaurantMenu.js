@@ -1,14 +1,54 @@
-// import React from "react";
+import React, { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
+import { CDN_URL } from "../utils/constants";
+import { useParams } from "react-router-dom";
+
 
 const RestaurantMenu = () => {
+
+  const [resInfo, setResInfo] = useState(null);
+  const [offers,setoffers] = useState([]);
+
+  const params = useParams();
+  console.log(params);
+  
+  
+
+  const fetchMenu = async() => {
+    const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.5849324&lng=77.38699&restaurantId=" + params.resId + "&catalog_qa=undefined&submitAction=ENTER");
+    const json = await data.json();
+    console.log(json);
+    setResInfo(json.data);
+    // setoffers(resInfo?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers);
+    
+  }
+
+  useEffect(()=>{
+    fetchMenu();
+  },[]);
+
+
+  if(resInfo === null){
+    return (<Shimmer/>);
+  }
+  const {name,cuisines,costForTwoMessage, avgRating, locality} = resInfo?.cards[2]?.card?.card?.info;
+  const offersArray = resInfo?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
+  console.log(offersArray);
+  let groupedArray = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+  console.log(groupedArray);
+  groupedArray = groupedArray.filter(card => card.card.card['@type'] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory');
+  console.log(groupedArray);
+  
+  
+
   return (
     <div className="rest-container-outer">
       <div className="rest-container-inner">
         <div className="path">
-          <p>Home/Noida/Chinese Wok</p>
+          <p>Home/Noida/{name}</p>
         </div>
         <div className="res-name-card">
-          <h1>Chinese Wok</h1>
+          <h1>{name}</h1>
         </div>
         <div className="order-online-card">
           <span>Order Online</span>
@@ -17,18 +57,19 @@ const RestaurantMenu = () => {
         <div className="res-detail-card">
           <div className="res-detail">
             <div className="res-detail-top">
-              <h3>4.0 ⭐ Rs. 250 for two</h3>
+              <h3>{avgRating}⭐{costForTwoMessage}</h3>
             </div>
-            <p>Chinese, Thai, Asian</p>
+            <p>{cuisines.join(',')}</p>
             <p style={{ color: "#FF5200", fontWeight: "bold" }}>
-              Sector 18, Noida
+              {locality}
             </p>
           </div>
         </div>
         <div className="deals-for-u-outer">
           <h4>DEALS FOR YOU</h4>
           <div className="deals-cards">
-            <div className="deals-card">
+            {offersArray.map((offer)=>{
+              return(<div className="deals-card" key={offer.info.offerIds[0]}>
               <div className="offer-logo">
                 <img
                   src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/deal-of-day"
@@ -36,34 +77,11 @@ const RestaurantMenu = () => {
                 />
               </div>
               <div className="offer-details">
-                <h3>Flat 50%</h3>
-                <p>Use WELCOME50</p>
+                <h3>{offer.info.header}</h3>
+                <p>{offer.info.description}</p>
               </div>
-            </div>
-            <div className="deals-card">
-              <div className="offer-logo">
-                <img
-                  src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/deal-of-day"
-                  alt="offer"
-                />
-              </div>
-              <div className="offer-details">
-                <h3>Flat 50%</h3>
-                <p>Use WELCOME50</p>
-              </div>
-            </div>
-            <div className="deals-card">
-              <div className="offer-logo">
-                <img
-                  src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/deal-of-day"
-                  alt="offer"
-                />
-              </div>
-              <div className="offer-details">
-                <h3>Flat 50%</h3>
-                <p>Use WELCOME50</p>
-              </div>
-            </div>
+            </div>);
+            })}
           </div>
         </div>
 
@@ -82,23 +100,36 @@ const RestaurantMenu = () => {
           <div className="besteller-icon">Besteller</div>
           <div className="guilt-icon">Guiltfree</div>
         </div>
+ 
 
-        <div className="dish-card">
+
+        {groupedArray.map((itemCategory)=>{
+          return(<div className="dish-card">
+          <h4 className="category-h4">{itemCategory.card.card.title}</h4>
+          <hr style={{marginBottom:"10px"}}/>
+          {itemCategory.card.card.itemCards.map((dish)=>{
+            return(
+              <div className="dish-card-inner">
           <div className="dish-detail">
-            <h3>Curd Rice Thali</h3>
-            <h4>veg</h4>
-            <p>Paneer Butter Masala</p>
-            <p>₹ 240</p>
-            <p>Paneer, Butter, Tomato, Cashew, Spices</p>
+            <h3>{dish.card.info.name}</h3>
+            <h4>{dish.card.info.itemAttribute.vegClassifier}</h4>
+            <p>{dish.card.info.description}</p>
+            <p>{"₹" + +dish.card.info.price / 100}</p>
           </div>
           <div className="dish-logo">
             <img
-              src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/FOOD_CATALOG/IMAGES/CMS/2025/7/21/b401d640-ceee-4f4e-a8a6-97a115f1b575_7025769a-b697-4caa-9f76-00805427b661.jpg"
+              src={CDN_URL + dish.card.info.imageId}
               alt="dish"
             />
             <div><button  className="add-btn">ADD+</button></div>
           </div>
         </div>
+            );
+          })}
+        
+        </div>)
+        })}
+        
       </div>
     </div>
   );

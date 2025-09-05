@@ -153,6 +153,7 @@
 }
 
 .deals-cards {
+  flex-wrap: wrap;
   gap: 20px;
   display: flex;
 }
@@ -163,7 +164,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 2%;
-  width: 370px;
+  width: 300px;
   padding: 10px;
   display: flex;
 }
@@ -239,7 +240,7 @@ hr {
   font-weight: 600;
 }
 
-.dish-card {
+.dish-card-inner {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -266,5 +267,24 @@ hr {
 a {
   color: #000;
   text-decoration: none;
+}
+
+.dish-card h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.category-h4 {
+  color: #ff4500;
+}
+
+.dish-detail p {
+  color: #02060c99;
+}
+
+.user-card {
+  border: 2px solid #000;
+  margin: 10px;
+  padding: 10px;
 }
 /*# sourceMappingURL=Namaste_Food.3a01df49.css.map */
